@@ -46,9 +46,9 @@ code {
 /* AUth wrapper */
 .inputIcon {
   position: absolute;
-  right: 10px;
-  top: 5px;
-  font-size: 22px;
+  right: 18px;
+  top: 20px;
+  font-size: 20px;
   color: #888888;
 }
 .auth-wrapper {
@@ -59,7 +59,7 @@ code {
   background: #e2e2e2b5;
 }
 .auth-wrapper .container {
-  max-width: 440px;
+  max-width: 540px;
   padding: 0 20px;
   width: 100%;
 }
@@ -71,7 +71,7 @@ code {
 }
 .auth-wrapper .wrapper .title {
   height: 65px;
-  background: #3816a0;
+  background: #0d6efd;
   border-radius: 5px 5px 0 0;
   color: #fff;
   font-size: 30px;
@@ -83,36 +83,37 @@ code {
 .auth-wrapper .wrapper form {
   padding: 30px 25px 25px 25px;
 }
-.auth-wrapper .wrapper form .row {
-  height: 45px;
-  margin-bottom: 15px;
+.auth-wrapper .wrapper form .input-row {
+  /* height: 45px;
+  margin-bottom: 35px;*/
   position: relative;
 }
-.auth-wrapper .wrapper form .row input {
-  height: 100%;
+.auth-wrapper .wrapper form .input-row input {
+  height: 40px;
   width: 100%;
   outline: none;
+  margin: 0px 0px 0px 0px;
   padding-left: 10px;
   border-radius: 5px;
   border: 1px solid lightgrey;
-  font-size: 16px;
+  font-size: 13px;
   transition: all 0.3s ease;
 }
-.auth-wrapper form .row input:focus {
-  border-color: #3816a0;
+.auth-wrapper form .input-row input:focus {
+  border-color: #0d6efd;
   box-shadow: inset 0px 0px 2px 2px rgba(69, 26, 188, 0.25);
 }
-.auth-wrapper form .row input::placeholder {
+.auth-wrapper form .input-row input::placeholder {
   color: #999;
 }
-.auth-wrapper .wrapper form .row i {
+.auth-wrapper .wrapper form .input-row i {
   position: absolute;
   width: 47px;
   height: 100%;
   color: #fff;
   font-size: 18px;
-  background: #3816a0;
-  border: 1px solid #3816a0;
+  background: #0d6efd;
+  border: 1px solid #0d6efd;
   border-radius: 5px 0 0 5px;
   display: flex;
   align-items: center;
@@ -122,7 +123,7 @@ code {
   margin: -8px 0 20px 0;
 }
 .auth-wrapper .wrapper form .pass a {
-  color: #3816a0;
+  color: #0d6efd;
   font-size: 17px;
   text-decoration: none;
 }
@@ -134,7 +135,7 @@ code {
   font-size: 20px;
   font-weight: 500;
   padding-left: 0px;
-  background: #3816a0;
+  background: #0d6efd;
   cursor: pointer;
 }
 .auth-wrapper form .button input:hover {
@@ -147,9 +148,33 @@ code {
   font-size: 17px;
 }
 .auth-wrapper .wrapper form .signup-link a {
-  color: #3816a0;
+  color: #0d6efd;
   text-decoration: none;
 }
 .auth-wrapper form .signup-link a:hover {
   text-decoration: underline;
+}
+
+/* Loader for button */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgb(255 255 255 / 60%);
+  border-radius: 50%;
+  margin-right: 4px;
+  border-top-color: #836d72;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }

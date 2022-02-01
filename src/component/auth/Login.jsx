@@ -1,14 +1,20 @@
-import React from "react";
+import React, { createRef, useEffect } from "react";
 import { Form } from "antd";
 import { Link } from "react-router-dom";
 import routes from "../../utils/routes";
 import CommonInput from "../../widgets/Inputs/CommonInput";
 import PasswordInput from "../../widgets/Inputs/PasswordInput";
+import useLogin from "../../Hooks/Auth/useLogin";
+import Button from "../../widgets/buttons/Button";
 
 function Login() {
-  const onFinish = () => {
-    alert();
-  };
+  const { loading, formik } = useLogin();
+  const inputElement = createRef();
+
+  useEffect(() => {
+    inputElement?.current?.focus();
+  }, []);
+
   return (
     <div className="auth-wrapper">
       <div className="container">
@@ -16,16 +22,55 @@ function Login() {
           <div className="title">
             <span>LOGIN </span>
           </div>
-          <Form action="#">
-            <div className="row">
-              <CommonInput type="text" placeholder="Email or Phone" />
+          <Form
+            onSubmit={formik.handleSubmit}
+            onKeyDown={(e) => {
+              if ((e.key === "Enter" || e.key === "NumpadEnter") && !loading) {
+                formik.handleSubmit();
+              }
+            }}
+          >
+            <div className="input-row mb-2">
+              <CommonInput
+                ref={inputElement}
+                type="text"
+                placeholder="john@gmail.com / john123"
+                label="Email"
+                inputName="email"
+                inputId="email"
+                {...formik.getFieldProps("email")}
+              />
+              {formik.touched.email && formik.errors.email && (
+                <div className="mt-1 text-sm text-danger">
+                  {formik.errors.email}
+                </div>
+              )}
             </div>
-            <div className="row">
-              <PasswordInput isEye={true} placeholder="Password" />
+            <div className="input-row mb-2">
+              <PasswordInput
+                label="Password"
+                isEye={true}
+                placeholder="Password"
+                inputName="password"
+                inputId="password"
+                {...formik.getFieldProps("password")}
+              />
+              {formik.touched.password && formik.errors.password && (
+                <div className="mt-1 text-sm text-danger">
+                  {formik.errors.password}
+                </div>
+              )}
             </div>
             <div className="pass">{/* <a href="#">Forgot password?</a> */}</div>
             <div className="row button">
-              <CommonInput type="submit" value="Login" />
+              <Button
+                onClick={formik.handleSubmit}
+                disabled={loading}
+                loading={loading}
+                type="submit"
+                className="w-full mt-6"
+                title="Log In"
+              />
             </div>
             <div className="signup-link">
               Not a member? <Link to={routes.register}>Signup now</Link>
