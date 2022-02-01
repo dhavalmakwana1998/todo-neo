@@ -1,13 +1,144 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+/* AUth wrapper */
+.inputIcon {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 22px;
+  color: #888888;
+}
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #e2e2e2b5;
+}
+.auth-wrapper .container {
+  max-width: 440px;
+  padding: 0 20px;
+  width: 100%;
+}
+.auth-wrapper .wrapper {
+  width: 100%;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.1);
+}
+.auth-wrapper .wrapper .title {
+  height: 65px;
+  background: #3816a0;
+  border-radius: 5px 5px 0 0;
+  color: #fff;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-wrapper .wrapper form {
+  padding: 30px 25px 25px 25px;
+}
+.auth-wrapper .wrapper form .row {
+  height: 45px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.auth-wrapper .wrapper form .row input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 10px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+.auth-wrapper form .row input:focus {
+  border-color: #3816a0;
+  box-shadow: inset 0px 0px 2px 2px rgba(69, 26, 188, 0.25);
+}
+.auth-wrapper form .row input::placeholder {
+  color: #999;
+}
+.auth-wrapper .wrapper form .row i {
+  position: absolute;
+  width: 47px;
+  height: 100%;
+  color: #fff;
+  font-size: 18px;
+  background: #3816a0;
+  border: 1px solid #3816a0;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-wrapper .wrapper form .pass {
+  margin: -8px 0 20px 0;
+}
+.auth-wrapper .wrapper form .pass a {
+  color: #3816a0;
+  font-size: 17px;
+  text-decoration: none;
+}
+.auth-wrapper .wrapper form .pass a:hover {
+  text-decoration: underline;
+}
+.auth-wrapper .wrapper form .button input {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  background: #3816a0;
+  cursor: pointer;
+}
+.auth-wrapper form .button input:hover {
+  background: #7f87f5;
+  border-color: transparent;
+}
+.auth-wrapper .wrapper form .signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 17px;
+}
+.auth-wrapper .wrapper form .signup-link a {
+  color: #3816a0;
+  text-decoration: none;
+}
+.auth-wrapper form .signup-link a:hover {
+  text-decoration: underline;
 }

@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "antd/dist/antd.css";
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./component/auth/Login";
+import Register from "./component/auth/Register";
+import Dashboard from "./component/Dashboard";
+import ProtectedRoute from "./component/ProtectedRoute";
+import NotFound from "./component/NotFound";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Fragment>
+          <Routes>
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/" element={<ProtectedRoute />}>
+              <Route exact path="/" element={<Dashboard />} />
+            </Route>
+            <Route path="*" exact element={<NotFound />} />
+          </Routes>
+        </Fragment>
+      </Router>
     </div>
   );
 }
