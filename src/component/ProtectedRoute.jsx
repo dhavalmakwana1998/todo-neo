@@ -7,14 +7,14 @@ import Sidebar from "./Sidebar";
 const { Header, Sider, Content } = Layout;
 
 const ProtectedRoute = () => {
-  const currentUser = false;
+  const currentUser = true;
 
   const [collapsed, setCollapsed] = useState(false);
   const toggle = () => {
     setCollapsed(!collapsed);
   };
   return currentUser ? (
-    <Layout>
+    <Layout className="h-100-vh">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <Sidebar />
       </Sider>

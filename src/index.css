@@ -6,7 +6,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+a {
+  text-decoration: none !important;
+}
+.h-100-vh {
+  height: 100vh;
+}
+.dashboard-card .icon {
+  font-size: 72px;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
