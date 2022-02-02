@@ -15,7 +15,7 @@ function Register() {
 
   useEffect(() => {
     inputElement?.current?.focus();
-  }, [inputElement]);
+  }, []);
 
   return (
     <div className="auth-wrapper">

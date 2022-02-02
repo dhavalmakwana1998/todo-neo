@@ -9,7 +9,7 @@ import Button from "../../widgets/buttons/Button";
 import { useStore } from "../../Store/Store";
 
 function Login() {
-  const { currentUser } = useStore();
+  const { currentUser, setCurrentUser } = useStore();
   const { loading, formik } = useLogin();
   const history = useNavigate();
   const inputElement = createRef();
@@ -18,10 +18,8 @@ function Login() {
     if (currentUser) {
       history(routes.dashboard);
     }
-  });
-  useEffect(() => {
     inputElement?.current?.focus();
-  }, [inputElement]);
+  }, []);
 
   return (
     <div className="auth-wrapper">
@@ -72,7 +70,8 @@ function Login() {
             <div className="pass">{/* <a href="#">Forgot password?</a> */}</div>
             <div className="row button">
               <Button
-                onClick={formik.handleSubmit}
+                // onClick={formik.handleSubmit}
+                onClick={() => setCurrentUser(true)}
                 disabled={loading}
                 loading={loading}
                 type="submit"

@@ -9,6 +9,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import { Tooltip } from "antd";
+import { Popconfirm, message } from "antd";
 
 const CardHeader = styled.div`
   font-weight: 500;
@@ -37,6 +38,15 @@ const DragItem = styled.div`
 `;
 
 const ListItem = ({ item, index }) => {
+  function confirm(e) {
+    console.log(e);
+    message.success("Click on Yes");
+  }
+
+  function cancel(e) {
+    console.log(e);
+    message.error("Click on No");
+  }
   return (
     <Draggable draggableId={item.id.toString()} index={index}>
       {(provided, snapshot) => {
@@ -72,17 +82,19 @@ const ListItem = ({ item, index }) => {
             </div>
             <CardHeader className="d-flex justify-content-between">
               <span>{item.name}</span>
-              <span
-                className={`${
-                  item.priority === 0
-                    ? "text-danger"
-                    : item.priority === 1
-                    ? "text-warning"
-                    : "text-muted"
-                }`}
-              >
-                {TASK_PRIORITY[item.priority]}
-              </span>
+              <Tooltip title="Priority">
+                <span
+                  className={`${
+                    item.priority === 0
+                      ? "text-danger"
+                      : item.priority === 1
+                      ? "text-warning"
+                      : "text-muted"
+                  }`}
+                >
+                  {TASK_PRIORITY[item.priority]}
+                </span>
+              </Tooltip>
             </CardHeader>
 
             <CardFooter>
@@ -110,7 +122,15 @@ const ListItem = ({ item, index }) => {
                   </button>
                   <button type="button" class="pb-2 p-1 m-0 btn text-danger">
                     <Tooltip title="Delete Task">
-                      <DeleteOutlined />
+                      <Popconfirm
+                        title="Are you sure to delete this task?"
+                        onConfirm={confirm}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <DeleteOutlined />
+                      </Popconfirm>
                     </Tooltip>
                   </button>
                 </div>
