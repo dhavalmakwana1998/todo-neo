@@ -1,7 +1,7 @@
 import React from "react";
 import { UnorderedListOutlined, FundOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
-import { Link, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import routes from "../utils/routes";
 
 function Sidebar() {

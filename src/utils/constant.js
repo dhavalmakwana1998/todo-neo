@@ -7,7 +7,6 @@ const ERROR_MESSAGE = {
   passRequired: "Password is required",
   contactReq: "Contact is required",
   userName: "UserName is required",
-  passRequired: "Password is required",
   email: "Invalid email address",
   passwordMinSix: "Password must be at least 6 characters",
   contacMinTen: "Contact number must be at least 10 numbers",

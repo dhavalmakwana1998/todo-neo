@@ -33,9 +33,9 @@ const PasswordInput = (
         {...other}
       />
       {isEye && (
-        <a className="inputIcon" onClick={changePasswordType}>
+        <span className="inputIcon" onClick={changePasswordType}>
           {eye ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-        </a>
+        </span>
       )}
     </>
   );

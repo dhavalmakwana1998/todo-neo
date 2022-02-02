@@ -1,6 +1,6 @@
 import { Draggable } from "react-beautiful-dnd";
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { TASK_PRIORITY, dateInPast } from "../../utils/constant";
 import {
   DeleteOutlined,
@@ -9,13 +9,6 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import { Tooltip } from "antd";
-
-const Avatar = styled.img`
-  height: 30px;
-  width: 30px;
-  border: 3px solid white;
-  border-radius: 50%;
-`;
 
 const CardHeader = styled.div`
   font-weight: 500;

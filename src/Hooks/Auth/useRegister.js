@@ -56,6 +56,7 @@ const useRegister = () => {
   return {
     loading,
     formik,
+    setLoading,
   };
 };
 

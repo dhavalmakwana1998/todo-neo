@@ -18,8 +18,10 @@ function Login() {
     if (currentUser) {
       history(routes.dashboard);
     }
+  });
+  useEffect(() => {
     inputElement?.current?.focus();
-  }, []);
+  }, [inputElement]);
 
   return (
     <div className="auth-wrapper">

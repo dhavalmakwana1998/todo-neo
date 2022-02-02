@@ -9,7 +9,7 @@ import Dashboard from "./component/Dashboard";
 import ProtectedRoute from "./component/ProtectedRoute";
 import NotFound from "./component/NotFound";
 import ToDo from "./component/Todo/ToDo";
-import { StoreProvider, useStore } from "./Store/Store";
+import { StoreProvider } from "./Store/Store";
 import AuthRoute from "./component/auth/AuthRoute";
 
 function App() {
