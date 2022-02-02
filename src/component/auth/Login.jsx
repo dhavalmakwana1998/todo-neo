@@ -1,17 +1,23 @@
 import React, { createRef, useEffect } from "react";
 import { Form } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import routes from "../../utils/routes";
 import CommonInput from "../../widgets/Inputs/CommonInput";
 import PasswordInput from "../../widgets/Inputs/PasswordInput";
 import useLogin from "../../Hooks/Auth/useLogin";
 import Button from "../../widgets/buttons/Button";
+import { useStore } from "../../Store/Store";
 
 function Login() {
+  const { currentUser } = useStore();
   const { loading, formik } = useLogin();
+  const history = useNavigate();
   const inputElement = createRef();
 
   useEffect(() => {
+    if (currentUser) {
+      history(routes.dashboard);
+    }
     inputElement?.current?.focus();
   }, []);
 

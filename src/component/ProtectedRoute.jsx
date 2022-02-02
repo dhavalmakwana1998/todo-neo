@@ -3,11 +3,13 @@ import { Navigate, Outlet } from "react-router-dom";
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { Layout } from "antd";
 import Sidebar from "./Sidebar";
+import { useStore } from "../Store/Store";
+import routes from "../utils/routes";
 
 const { Header, Sider, Content } = Layout;
 
 const ProtectedRoute = () => {
-  const currentUser = true;
+  const { currentUser } = useStore();
 
   const [collapsed, setCollapsed] = useState(false);
   const toggle = () => {
@@ -41,7 +43,7 @@ const ProtectedRoute = () => {
       </Layout>
     </Layout>
   ) : (
-    <Navigate to="/login" />
+    <Navigate to={routes.login} />
   );
 };
 

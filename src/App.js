@@ -9,28 +9,39 @@ import Dashboard from "./component/Dashboard";
 import ProtectedRoute from "./component/ProtectedRoute";
 import NotFound from "./component/NotFound";
 import ToDo from "./component/Todo/ToDo";
+import { StoreProvider, useStore } from "./Store/Store";
+import AuthRoute from "./component/auth/AuthRoute";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Fragment>
-          <Routes>
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/register" element={<Register />} />
+    <StoreProvider>
+      <div className="App">
+        <Router>
+          <Fragment>
+            <Routes>
+              {/* AUTH ROUTES */}
+              <Route exact path="/login" element={<AuthRoute />}>
+                <Route exact path="/login" element={<Login />} />
+              </Route>
+              <Route exact path="/register" element={<AuthRoute />}>
+                <Route exact path="/register" element={<Register />} />
+              </Route>
 
-            <Route exact path="/" element={<ProtectedRoute />}>
-              <Route exact path="/" element={<Dashboard />} />
-            </Route>
-            <Route exact path="/todo" element={<ProtectedRoute />}>
-              <Route exact path="/todo" element={<ToDo />} />
-            </Route>
+              {/* PAGES ROUTES */}
+              <Route exact path="/" element={<ProtectedRoute />}>
+                <Route exact path="/" element={<Dashboard />} />
+              </Route>
+              <Route exact path="/todo" element={<ProtectedRoute />}>
+                <Route exact path="/todo" element={<ToDo />} />
+              </Route>
 
-            <Route path="*" exact element={<NotFound />} />
-          </Routes>
-        </Fragment>
-      </Router>
-    </div>
+              {/* NOT FOUND */}
+              <Route path="*" exact element={<NotFound />} />
+            </Routes>
+          </Fragment>
+        </Router>
+      </div>
+    </StoreProvider>
   );
 }
 

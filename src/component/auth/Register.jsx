@@ -7,6 +7,7 @@ import NumberInput from "../../widgets/Inputs/NumberInput";
 import PasswordInput from "../../widgets/Inputs/PasswordInput";
 import ImageUploader from "../../widgets/Inputs/ImageUploader";
 import useRegister from "../../Hooks/Auth/useRegister";
+import Button from "../../widgets/buttons/Button";
 
 function Register() {
   const { loading, formik } = useRegister();
