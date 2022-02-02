@@ -7,6 +7,7 @@ export const useStore = () => React.useContext(Store);
 
 export const StoreProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(true);
+
   return (
     <Store.Provider
       value={{

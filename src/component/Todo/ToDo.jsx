@@ -1,6 +1,7 @@
 import { PageHeader, Button } from "antd";
 import React, { useState, Suspense } from "react";
 import useToDo from "../../Hooks/useToDo";
+import DragList from "./DragList";
 const AddTodoModal = React.lazy(() => import("./AddTodoModal"));
 
 function ToDo() {
@@ -36,6 +37,7 @@ function ToDo() {
           </Button>,
         ]}
       ></PageHeader>
+      <DragList />
       <Suspense fallback={<div>Loading...</div>}>
         <AddTodoModal
           handleOk={handleOk}
