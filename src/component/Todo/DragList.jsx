@@ -77,7 +77,7 @@ function DragList() {
     [TASK_STATUS[3]]: [
       {
         id: Math.floor(Math.random() * 1000),
-        name: "DM 2",
+        name: "DM 3",
         stage: 3,
         dueDate: "2021-01-02",
         priority: 2,
