@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  UserOutlined,
-  UnorderedListOutlined,
-  FundOutlined,
-} from "@ant-design/icons";
+import { UnorderedListOutlined, FundOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import { Link, Routes } from "react-router-dom";
 import routes from "../utils/routes";
@@ -23,9 +19,6 @@ function Sidebar() {
         </Menu.Item>
         <Menu.Item key="2" icon={<UnorderedListOutlined />}>
           <Link to={routes.todo}>ToDo</Link>
-        </Menu.Item>
-        <Menu.Item key="3" icon={<UserOutlined />}>
-          <Link to={routes.todo}>Profile</Link>
         </Menu.Item>
       </Menu>
     </div>

@@ -24,14 +24,20 @@ const REGEX = {
     "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{6,}$/",
   onlyDigit: "^[0-9]*$",
 };
-const TASK_STATUS = {
-  completed: "Completed",
-  pending: "Pending",
-  canceled: "Canceled",
+const TASK_STATUS = ["Backlog", "ToDo", "Ongoing", "Done"];
+const TASK_PRIORITY = ["High", "Medium", "Low"];
+
+const dateInPast = function (date, toDay = new Date()) {
+  if (new Date(date) <= toDay) {
+    return true;
+  }
+  return false;
 };
 
 module.exports = {
   TASK_STATUS,
   ERROR_MESSAGE,
+  TASK_PRIORITY,
   REGEX,
+  dateInPast,
 };

@@ -14,8 +14,9 @@ const DroppableStyles = styled.div`
   background: #d4d4d4;
 `;
 
-const DraggableElement = ({ prefix, elements }) => (
+const DraggableElement = ({ prefix, elements = [] }) => (
   <DroppableStyles>
+    {console.log("elements", elements)}
     <ColumnHeader>{prefix}</ColumnHeader>
     <Droppable droppableId={`${prefix}`}>
       {(provided) => (

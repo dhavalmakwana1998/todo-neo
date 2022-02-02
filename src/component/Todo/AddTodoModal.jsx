@@ -29,6 +29,7 @@ function AddTodoModal({
       onOk={handleOk}
       confirmLoading={confirmLoading}
       onCancel={handleCancel}
+      okText="Create Todo"
     >
       <Form
         onSubmit={formik.handleSubmit}

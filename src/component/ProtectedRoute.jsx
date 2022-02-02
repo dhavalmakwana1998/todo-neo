@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
-import { Layout } from "antd";
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  LogoutOutlined,
+} from "@ant-design/icons";
+import { Button, Layout } from "antd";
 import Sidebar from "./Sidebar";
 import { useStore } from "../Store/Store";
 import routes from "../utils/routes";
@@ -9,7 +13,7 @@ import routes from "../utils/routes";
 const { Header, Sider, Content } = Layout;
 
 const ProtectedRoute = () => {
-  const { currentUser } = useStore();
+  const { currentUser, setCurrentUser } = useStore();
 
   const [collapsed, setCollapsed] = useState(false);
   const toggle = () => {
@@ -29,6 +33,15 @@ const ProtectedRoute = () => {
               onClick: toggle,
             }
           )}
+
+          <Button
+            type="primary"
+            style={{ float: "right", top: "12px", right: "36px" }}
+            icon={<LogoutOutlined />}
+            onClick={() => setCurrentUser(false)}
+          >
+            Logout
+          </Button>
         </Header>
         <Content
           className="site-layout-background"
@@ -36,6 +49,7 @@ const ProtectedRoute = () => {
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
+            overflow: "scroll",
           }}
         >
           <Outlet />

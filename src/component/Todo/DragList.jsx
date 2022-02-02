@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
+import { TASK_STATUS } from "../../utils/constant";
 
 const DragDropContextContainer = styled.div`
   border-radius: 6px;
@@ -12,17 +13,6 @@ const ListGrid = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 6px;
 `;
-
-// fake data generator
-const getItems = (count, prefix) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => {
-    const randomId = Math.floor(Math.random() * 1000);
-    return {
-      id: `item-${randomId}`,
-      prefix,
-      content: `item ${randomId}`,
-    };
-  });
 
 const removeFromList = (list, index) => {
   const result = Array.from(list);
@@ -36,22 +26,68 @@ const addToList = (list, index, element) => {
   return result;
 };
 
-const lists = ["ToDo", "Ongoing", "Done", "Backlog"];
-
-const generateLists = () =>
-  lists.reduce(
-    (acc, listKey) => ({ ...acc, [listKey]: getItems(10, listKey) }),
-    {}
-  );
-
 function DragList() {
-  const [elements, setElements] = React.useState(generateLists());
-
-  useEffect(() => {
-    setElements(generateLists());
-  }, []);
+  const [elements, setElements] = React.useState({
+    [TASK_STATUS[0]]: [
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "Task 1",
+        stage: 0,
+        dueDate: "2022-04-02",
+        priority: 0,
+        prefix: TASK_STATUS[0],
+      },
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "Task 1",
+        stage: 0,
+        dueDate: "2022-04-02",
+        priority: 0,
+        prefix: TASK_STATUS[0],
+      },
+    ],
+    [TASK_STATUS[1]]: [
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "Task 2",
+        stage: 1,
+        dueDate: "2022-04-02",
+        priority: 1,
+        prefix: TASK_STATUS[1],
+      },
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "Task 2",
+        stage: 1,
+        dueDate: "2022-04-02",
+        priority: 1,
+        prefix: TASK_STATUS[1],
+      },
+    ],
+    [TASK_STATUS[2]]: [
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "DM 2",
+        stage: 2,
+        dueDate: "2021-01-02",
+        priority: 2,
+        prefix: TASK_STATUS[1],
+      },
+    ],
+    [TASK_STATUS[3]]: [
+      {
+        id: Math.floor(Math.random() * 1000),
+        name: "DM 2",
+        stage: 3,
+        dueDate: "2021-01-02",
+        priority: 2,
+        prefix: TASK_STATUS[1],
+      },
+    ],
+  });
 
   const onDragEnd = (result) => {
+    console.log("result", result.destination);
     if (!result.destination) {
       return;
     }
@@ -77,13 +113,15 @@ function DragList() {
     <DragDropContextContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <ListGrid>
-          {lists.map((listKey) => (
-            <DraggableElement
-              elements={elements[listKey]}
-              key={listKey}
-              prefix={listKey}
-            />
-          ))}
+          {TASK_STATUS.map((listKey) => {
+            return (
+              <DraggableElement
+                elements={elements[listKey]}
+                key={listKey}
+                prefix={listKey}
+              />
+            );
+          })}
         </ListGrid>
       </DragDropContext>
     </DragDropContextContainer>
