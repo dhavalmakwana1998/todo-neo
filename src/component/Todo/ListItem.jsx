@@ -48,98 +48,100 @@ const ListItem = ({ item, index }) => {
     message.error("Click on No");
   }
   return (
-    <Draggable draggableId={item.id.toString()} index={index}>
-      {(provided, snapshot) => {
-        return (
-          <DragItem
-            ref={provided.innerRef}
-            snapshot={snapshot}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <div className="d-flex justify-content-between">
-              <h6 className="m-0 p-0">ID: {item.id}</h6>
-              <div
-                class="btn-group btn-group-sm"
-                role="group"
-                aria-label="Basic example"
-              >
-                <button
-                  disabled={item.stage === 0}
-                  type="button"
-                  class="pb-2 p-1 m-0 btn btn-info  "
-                >
-                  <LeftOutlined />
-                </button>
-                <button
-                  disabled={item.stage === 3}
-                  type="button"
-                  class="pb-2 p-1 m-0 btn btn-info  "
-                >
-                  <RightOutlined />
-                </button>
-              </div>
-            </div>
-            <CardHeader className="d-flex justify-content-between">
-              <span>{item.name}</span>
-              <Tooltip title="Priority">
-                <span
-                  className={`${
-                    item.priority === 0
-                      ? "text-danger"
-                      : item.priority === 1
-                      ? "text-warning"
-                      : "text-muted"
-                  }`}
-                >
-                  {TASK_PRIORITY[item.priority]}
-                </span>
-              </Tooltip>
-            </CardHeader>
-
-            <CardFooter>
-              <Tooltip title="Due Date">
-                <span
-                  className={`${
-                    dateInPast(item.dueDate)
-                      ? "text-danger font-weight-bold"
-                      : "text-success font-weight-bold"
-                  }`}
-                >
-                  {item.dueDate}
-                </span>
-              </Tooltip>
-              <Author>
+    <>
+      <Draggable draggableId={item.id.toString()} index={index}>
+        {(provided, snapshot) => {
+          return (
+            <DragItem
+              ref={provided.innerRef}
+              snapshot={snapshot}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <div className="d-flex justify-content-between">
+                <h6 className="m-0 p-0">ID: {item.id}</h6>
                 <div
                   class="btn-group btn-group-sm"
                   role="group"
                   aria-label="Basic example"
                 >
-                  <button type="button" class="pb-2 p-1 m-0 btn text-warning">
-                    <Tooltip title="Edit Task">
-                      <EditOutlined />
-                    </Tooltip>
+                  <button
+                    disabled={item.stage === 0}
+                    type="button"
+                    class="pb-2 p-1 m-0 btn btn-info  "
+                  >
+                    <LeftOutlined />
                   </button>
-                  <button type="button" class="pb-2 p-1 m-0 btn text-danger">
-                    <Tooltip title="Delete Task">
-                      <Popconfirm
-                        title="Are you sure to delete this task?"
-                        onConfirm={confirm}
-                        onCancel={cancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <DeleteOutlined />
-                      </Popconfirm>
-                    </Tooltip>
+                  <button
+                    disabled={item.stage === 3}
+                    type="button"
+                    class="pb-2 p-1 m-0 btn btn-info  "
+                  >
+                    <RightOutlined />
                   </button>
                 </div>
-              </Author>
-            </CardFooter>
-          </DragItem>
-        );
-      }}
-    </Draggable>
+              </div>
+              <CardHeader className="d-flex justify-content-between">
+                <span>{item.name}</span>
+                <Tooltip title="Priority">
+                  <span
+                    className={`${
+                      item.priority === 0
+                        ? "text-danger"
+                        : item.priority === 1
+                        ? "text-warning"
+                        : "text-muted"
+                    }`}
+                  >
+                    {TASK_PRIORITY[item.priority]}
+                  </span>
+                </Tooltip>
+              </CardHeader>
+
+              <CardFooter>
+                <Tooltip title="Due Date">
+                  <span
+                    className={`${
+                      dateInPast(item.dueDate)
+                        ? "text-danger font-weight-bold"
+                        : "text-success font-weight-bold"
+                    }`}
+                  >
+                    {item.dueDate}
+                  </span>
+                </Tooltip>
+                <Author>
+                  <div
+                    class="btn-group btn-group-sm"
+                    role="group"
+                    aria-label="Basic example"
+                  >
+                    <button type="button" class="pb-2 p-1 m-0 btn text-warning">
+                      <Tooltip title="Edit Task">
+                        <EditOutlined />
+                      </Tooltip>
+                    </button>
+                    <button type="button" class="pb-2 p-1 m-0 btn text-danger">
+                      <Tooltip title="Delete Task">
+                        <Popconfirm
+                          title="Are you sure to delete this task?"
+                          onConfirm={confirm}
+                          onCancel={cancel}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                          <DeleteOutlined />
+                        </Popconfirm>
+                      </Tooltip>
+                    </button>
+                  </div>
+                </Author>
+              </CardFooter>
+            </DragItem>
+          );
+        }}
+      </Draggable>
+    </>
   );
 };
 

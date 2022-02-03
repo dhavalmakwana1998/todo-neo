@@ -43,6 +43,34 @@ code {
 .site-layout .site-layout-background {
   background: #fff;
 }
+.delete-task-fab {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  background: #fff;
+  padding: 10px;
+  border-radius: 50px;
+  margin: 0px;
+  font-size: 35px;
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  box-shadow: 0px 0px 10px 6px #00000047;
+  animation: scale-display 0.3s;
+  animation-direction: alternate;
+}
+@keyframes scale-display {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+}
 /* AUth wrapper */
 .inputIcon {
   position: absolute;

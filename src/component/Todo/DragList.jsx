@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
 import { TASK_STATUS } from "../../utils/constant";
+import { useStore } from "../../Store/Store";
+import {
+  DeleteColumnOutlined,
+  DeleteFilled,
+  DeleteOutlined,
+  DeleteTwoTone,
+} from "@ant-design/icons";
 
 const DragDropContextContainer = styled.div`
   border-radius: 6px;
@@ -27,6 +34,7 @@ const addToList = (list, index, element) => {
 };
 
 function DragList() {
+  const { isDragging, setIsDragging } = useStore();
   const [elements, setElements] = React.useState({
     [TASK_STATUS[0]]: [
       {
@@ -106,12 +114,21 @@ function DragList() {
       removedElement
     );
 
+    setIsDragging(false);
     setElements(listCopy);
+  };
+  const ondragstart = (res) => {
+    setIsDragging(true);
   };
 
   return (
     <DragDropContextContainer>
-      <DragDropContext onDragEnd={onDragEnd}>
+      {isDragging && (
+        <div className="bg-danger delete-task-fab pt-0 m-0">
+          <DeleteOutlined className="text-light" />
+        </div>
+      )}
+      <DragDropContext onDragStart={ondragstart} onDragEnd={onDragEnd}>
         <ListGrid>
           {TASK_STATUS.map((listKey) => {
             return (
@@ -119,6 +136,7 @@ function DragList() {
                 elements={elements[listKey]}
                 key={listKey}
                 prefix={listKey}
+                isDragging={isDragging}
               />
             );
           })}
