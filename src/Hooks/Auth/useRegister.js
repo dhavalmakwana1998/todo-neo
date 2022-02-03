@@ -9,8 +9,16 @@ import { useNavigate } from "react-router-dom";
 
 const useRegister = () => {
   const [loading, setLoading] = useState(false);
-
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+
+  const getUser = async () => {
+    const res = await axios.get(`${API_URL}/${API_ROUTE.user}`);
+    setUsers(...users, res.data);
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
 
   async function createUser(payload) {
     setLoading(true);
@@ -46,8 +54,7 @@ const useRegister = () => {
         .matches(/^[a-zA-Z0-9]*$/, ERROR_MESSAGE.spaceValidation)
         .required(ERROR_MESSAGE.userName)
         .test("unique", ERROR_MESSAGE.userNameExist, async (list) => {
-          const res = await axios.get(`${API_URL}/${API_ROUTE.user}`);
-          return !Boolean(res.data.find((elem) => elem.userName === list));
+          return !Boolean(users.find((elem) => elem.userName === list));
         }),
       fullName: Yup.string().required(ERROR_MESSAGE.fullName),
       contact: Yup.string()
@@ -55,16 +62,13 @@ const useRegister = () => {
         .max(10, ERROR_MESSAGE.contacMinTen)
         .matches(/^[a-zA-Z0-9]*$/, ERROR_MESSAGE.spaceValidation)
         .test("unique", ERROR_MESSAGE.contactExist, async (list) => {
-          const res = await axios.get(`${API_URL}/${API_ROUTE.user}`);
-          return !Boolean(res.data.find((elem) => elem.contact === list));
+          return !Boolean(users.find((elem) => elem.contact === list));
         }),
       email: Yup.string()
         .required(ERROR_MESSAGE.emailRequired)
         .email(ERROR_MESSAGE.email)
-        .matches(/^[a-zA-Z0-9]*$/, ERROR_MESSAGE.spaceValidation)
         .test("unique", ERROR_MESSAGE.emailExist, async (list) => {
-          const res = await axios.get(`${API_URL}/${API_ROUTE.user}`);
-          return !Boolean(res.data.some((elem) => elem.email === list));
+          return !Boolean(users.find((elem) => elem.email === list));
         }),
       password: Yup.string()
         .matches(

@@ -34,7 +34,8 @@ const REGEX = {
 const TASK_STATUS = ["Backlog", "ToDo", "Ongoing", "Done"];
 const TASK_PRIORITY = ["High", "Medium", "Low"];
 
-const API_URL = "http://localhost:3300";
+const API_URL =
+  "https://my-json-server.typicode.com/dhavalmakwana1998/todo-neo";
 const API_ROUTE = {
   user: "users",
 };
