@@ -13,13 +13,13 @@ import routes from "../utils/routes";
 const { Header, Sider, Content } = Layout;
 
 const ProtectedRoute = () => {
-  const { currentUser, setCurrentUser } = useStore();
+  const { token, setToken, setCurrentUser, currentUser } = useStore();
 
   const [collapsed, setCollapsed] = useState(false);
   const toggle = () => {
     setCollapsed(!collapsed);
   };
-  return currentUser ? (
+  return token ? (
     <Layout className="h-100-vh">
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <Sidebar />
@@ -33,12 +33,15 @@ const ProtectedRoute = () => {
               onClick: toggle,
             }
           )}
-
+          {currentUser && <span>Welcome! {currentUser.fullName}</span>}
           <Button
             type="primary"
             style={{ float: "right", top: "12px", right: "36px" }}
             icon={<LogoutOutlined />}
-            onClick={() => setCurrentUser(false)}
+            onClick={() => {
+              setToken(false);
+              setCurrentUser(false);
+            }}
           >
             Logout
           </Button>

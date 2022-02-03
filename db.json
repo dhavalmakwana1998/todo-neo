@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Dhaval Makwana",
+      "userName": "dhavalmak",
+      "email": "dhavalmakwana191@gmail.com",
+      "contact": "7600446773",
+      "password": "123456",
+      "profile": ""
+    },
+    {
+      "id": 103,
+      "contact": "7600446773",
+      "email": "dmak.freelancer@gmail.com",
+      "fullName": "Yash Dineshbhai Siddhpura",
+      "password": "123@abc",
+      "profile": "",
+      "userName": "76000446773"
+    },
+    {
+      "id": 144,
+      "contact": "0760046773",
+      "email": "admin@gmail.com",
+      "fullName": "Yash Dineshbhai Siddhpura",
+      "password": "123@dm",
+      "profile": "",
+      "userName": "dmak"
+    }
+  ]
+}

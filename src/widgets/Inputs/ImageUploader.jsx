@@ -20,9 +20,8 @@ function beforeUpload(file) {
   return isJpgOrPng && isLt2M;
 }
 
-const ImageUploader = () => {
+const ImageUploader = ({ formik }) => {
   const [loading, setloading] = useState(false);
-  const [imgUrl, setImgUrl] = useState("");
 
   const handleChange = (info) => {
     if (info.file.status === "uploading") {
@@ -32,7 +31,7 @@ const ImageUploader = () => {
     if (info.file.status === "done") {
       getBase64(info.file.originFileObj, (imageUrl) => {
         setloading(false);
-        setImgUrl(imageUrl);
+        formik.setFieldValue("profile", imageUrl);
       });
     }
   };
@@ -54,8 +53,8 @@ const ImageUploader = () => {
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
-      {imgUrl ? (
-        <img src={imgUrl} alt="avatar" style={{ width: "100%" }} />
+      {formik.profile ? (
+        <img src={formik.profile} alt="avatar" style={{ width: "100%" }} />
       ) : (
         uploadButton
       )}

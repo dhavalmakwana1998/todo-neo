@@ -9,13 +9,13 @@ import Button from "../../widgets/buttons/Button";
 import { useStore } from "../../Store/Store";
 
 function Login() {
-  const { currentUser, setCurrentUser } = useStore();
+  const { token } = useStore();
   const { loading, formik } = useLogin();
   const history = useNavigate();
   const inputElement = createRef();
 
   useEffect(() => {
-    if (currentUser) {
+    if (token) {
       history(routes.dashboard);
     }
     inputElement?.current?.focus();
@@ -72,11 +72,9 @@ function Login() {
             <div className="pass">{/* <a href="#">Forgot password?</a> */}</div>
             <div className="row button">
               <Button
-                // onClick={formik.handleSubmit}
-                onClick={() => setCurrentUser(true)}
+                onClick={formik.handleSubmit}
                 disabled={loading}
                 loading={loading}
-                type="submit"
                 className="w-full mt-6"
                 title="Log In"
               />

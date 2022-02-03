@@ -127,7 +127,7 @@ function Register() {
             </div>
 
             <div className="input-row" style={{ height: "120px" }}>
-              <ImageUploader />
+              <ImageUploader formik={formik} />
             </div>
             <div className="row button">
               <Button

@@ -6,16 +6,18 @@ Store.displayName = "Store";
 export const useStore = () => React.useContext(Store);
 
 export const StoreProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [token, setToken] = useState(false);
+  const [currentUser, setCurrentUser] = useState();
   const [isDragging, setIsDragging] = useState(false);
-
   return (
     <Store.Provider
       value={{
-        currentUser,
-        setCurrentUser,
+        token,
+        setToken,
         isDragging,
         setIsDragging,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

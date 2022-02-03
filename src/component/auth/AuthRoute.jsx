@@ -4,9 +4,9 @@ import { useStore } from "../../Store/Store";
 import routes from "../../utils/routes";
 
 const AuthRoute = () => {
-  const { currentUser } = useStore();
+  const { token } = useStore();
 
-  return !currentUser ? <Outlet /> : <Navigate to={routes.dashboard} />;
+  return !token ? <Outlet /> : <Navigate to={routes.dashboard} />;
 };
 
 export default AuthRoute;

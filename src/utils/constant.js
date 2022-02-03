@@ -1,12 +1,20 @@
 const ERROR_MESSAGE = {
+  InvalidCredential: "Invalid Email/Password",
+  loginSuccess: "Login Successfuly!",
   required: "This field is required",
   emailRequired: "Email is required",
   taskRequired: "Task is required",
   deadlineRequired: "Due Date is required",
   priorityRequired: "Priority is required",
   passRequired: "Password is required",
+  confirmPassRequired: "Confirm Password is required",
   contactReq: "Contact is required",
-  userName: "UserName is required",
+  userName: "User Name is required",
+  fullName: "Fullname is required",
+  userNameExist: "Username already exists",
+  contactExist: "Contact already exists",
+  emailExist: "Email address already exists",
+  spaceValidation: "Spaces is not allowed",
   email: "Invalid email address",
   passwordMinSix: "Password must be at least 6 characters",
   contacMinTen: "Contact number must be at least 10 numbers",
@@ -26,6 +34,10 @@ const REGEX = {
 const TASK_STATUS = ["Backlog", "ToDo", "Ongoing", "Done"];
 const TASK_PRIORITY = ["High", "Medium", "Low"];
 
+const API_URL = "http://localhost:3300";
+const API_ROUTE = {
+  user: "users",
+};
 const dateInPast = function (date, toDay = new Date()) {
   if (new Date(date) <= toDay) {
     return true;
@@ -38,5 +50,7 @@ module.exports = {
   ERROR_MESSAGE,
   TASK_PRIORITY,
   REGEX,
+  API_ROUTE,
+  API_URL,
   dateInPast,
 };
