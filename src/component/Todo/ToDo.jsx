@@ -1,4 +1,3 @@
-import { DeleteOutlined } from "@ant-design/icons";
 import { PageHeader, Button } from "antd";
 import React, { useState, Suspense } from "react";
 import useToDo from "../../Hooks/useToDo";
@@ -7,7 +6,6 @@ const AddTodoModal = React.lazy(() => import("./AddTodoModal"));
 
 function ToDo() {
   const { loading, formik } = useToDo();
-
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(loading);
 
@@ -18,15 +16,13 @@ function ToDo() {
   const handleOk = () => {
     setConfirmLoading(loading);
     formik.handleSubmit();
-    // setTimeout(() => {
-    //   setConfirmLoading(loading);
-    //   setVisible(false);
-    // }, 2000);
+    setVisible(false);
   };
   const handleCancel = () => {
     setVisible(false);
     formik.resetForm();
   };
+
   return (
     <div>
       <PageHeader

@@ -7,25 +7,25 @@
       "email": "dhavalmakwana191@gmail.com",
       "contact": "7600446773",
       "password": "123456",
-      "profile": ""
+      "profile": "https://i.pravatar.cc/150?u=268"
     },
     {
-      "id": 103,
-      "contact": "7600446773",
-      "email": "dmak.freelancer@gmail.com",
-      "fullName": "Yash Dineshbhai Siddhpura",
-      "password": "123@abc",
-      "profile": "",
-      "userName": "76000446773"
-    },
-    {
-      "id": 144,
-      "contact": "0760046773",
+      "id": 381,
+      "contact": "8787784574",
       "email": "admin@gmail.com",
-      "fullName": "Yash Dineshbhai Siddhpura",
-      "password": "123@dm",
-      "profile": "",
-      "userName": "dmak"
+      "fullName": "admin admin",
+      "password": "admin@123",
+      "profile": "https://i.pravatar.cc/150?u=267",
+      "userName": "admin"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 922,
+      "task": "fist Task",
+      "priority": "0",
+      "dueDate": "2022-02-07",
+      "stage": 0
     }
   ]
 }

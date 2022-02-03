@@ -33,7 +33,15 @@ const ProtectedRoute = () => {
               onClick: toggle,
             }
           )}
-          {currentUser && <span>Welcome! {currentUser.fullName}</span>}
+          {currentUser && (
+            <span>
+              {" "}
+              {currentUser.profile && (
+                <img className="avtar" src={`${currentUser.profile}`} />
+              )}
+              Welcome! {currentUser.fullName}
+            </span>
+          )}
           <Button
             type="primary"
             style={{ float: "right", top: "12px", right: "36px" }}

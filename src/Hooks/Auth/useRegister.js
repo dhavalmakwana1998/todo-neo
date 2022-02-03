@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { ERROR_MESSAGE, API_ROUTE, API_URL } from "../../utils/constant";
+import {
+  ERROR_MESSAGE,
+  API_ROUTE,
+  API_URL,
+  SUCCESS_MSG,
+} from "../../utils/constant";
 import axios from "axios";
 import { message } from "antd";
 import routes from "../../utils/routes";
@@ -30,11 +35,11 @@ const useRegister = () => {
       if (response) {
         setLoading(false);
         navigate(routes.login);
-        message.success("User created sucessfully");
+        message.success(SUCCESS_MSG.userCreate);
       }
     } catch (error) {
       setLoading(false);
-      message.error("Somthing went wrong");
+      message.error(ERROR_MESSAGE.somethingWentWrong);
       console.error(error);
     }
   }
@@ -103,6 +108,7 @@ const useRegister = () => {
       profile: data.profile || "",
       userName: data.userName,
     };
+
     createUser(payload);
   };
 

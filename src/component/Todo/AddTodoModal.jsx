@@ -16,7 +16,7 @@ function AddTodoModal({
 
   useEffect(() => {
     inputElement?.current?.focus();
-  });
+  }, []);
 
   function onChange(date, dateString) {
     formik.setFieldValue("dueDate", dateString);

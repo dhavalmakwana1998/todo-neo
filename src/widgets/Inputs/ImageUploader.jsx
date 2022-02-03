@@ -24,16 +24,19 @@ const ImageUploader = ({ formik }) => {
   const [loading, setloading] = useState(false);
 
   const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setloading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      getBase64(info.file.originFileObj, (imageUrl) => {
-        setloading(false);
-        formik.setFieldValue("profile", imageUrl);
-      });
-    }
+    formik.setFieldValue(
+      "profile",
+      `https://i.pravatar.cc/150?u=${Math.floor(Math.random() * 1000)}`
+    );
+    // if (info.file.status === "uploading") {
+    //   return;
+    // }
+    // if (info.file.status === "done") {
+    //   getBase64(info.file.originFileObj, (imageUrl) => {
+    //     setloading(false);
+    //     formik.setFieldValue("profile", imageUrl);
+    //   });
+    // }
   };
 
   const uploadButton = (
@@ -49,12 +52,15 @@ const ImageUploader = ({ formik }) => {
       listType="picture-card"
       className="avatar-uploader"
       showUploadList={false}
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
       beforeUpload={beforeUpload}
       onChange={handleChange}
     >
-      {formik.profile ? (
-        <img src={formik.profile} alt="avatar" style={{ width: "100%" }} />
+      {formik.getFieldProps("profile").value ? (
+        <img
+          src={formik.getFieldProps("profile").value}
+          alt="avatar"
+          style={{ width: "100%" }}
+        />
       ) : (
         uploadButton
       )}

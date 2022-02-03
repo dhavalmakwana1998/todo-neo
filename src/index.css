@@ -71,6 +71,12 @@ code {
     -webkit-transform: scale(1);
   }
 }
+.avtar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  margin: 0 10px 0 0;
+}
 /* AUth wrapper */
 .inputIcon {
   position: absolute;

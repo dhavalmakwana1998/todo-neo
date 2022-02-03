@@ -1,4 +1,5 @@
 const ERROR_MESSAGE = {
+  somethingWentWrong: "Something went wrong",
   InvalidCredential: "Invalid Email/Password",
   loginSuccess: "Login Successfuly!",
   required: "This field is required",
@@ -26,6 +27,10 @@ const ERROR_MESSAGE = {
   minimumThreeChar: "This field must contains more than two characters.",
   phoneLength: "Must be 10 digits",
 };
+const SUCCESS_MSG = {
+  taskCreate: "Task created successfully",
+  userCreate: "User created successfully",
+};
 const REGEX = {
   password:
     "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{6,}$/",
@@ -34,10 +39,10 @@ const REGEX = {
 const TASK_STATUS = ["Backlog", "ToDo", "Ongoing", "Done"];
 const TASK_PRIORITY = ["High", "Medium", "Low"];
 
-const API_URL =
-  "https://my-json-server.typicode.com/dhavalmakwana1998/todo-neo";
+const API_URL = "http://localhost:3300";
 const API_ROUTE = {
   user: "users",
+  tasks: "tasks",
 };
 const dateInPast = function (date, toDay = new Date()) {
   if (new Date(date) <= toDay) {
@@ -49,6 +54,7 @@ const dateInPast = function (date, toDay = new Date()) {
 module.exports = {
   TASK_STATUS,
   ERROR_MESSAGE,
+  SUCCESS_MSG,
   TASK_PRIORITY,
   REGEX,
   API_ROUTE,
