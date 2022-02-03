@@ -37,6 +37,7 @@ function Register() {
                 <CommonInput
                   ref={inputElement}
                   label="Full Name"
+                  isRequired={true}
                   type="text"
                   placeholder="Full Name"
                   inputName="fullName"
@@ -50,6 +51,7 @@ function Register() {
               <div className="col-12 col-md-6 mb-2">
                 <CommonInput
                   label="Username"
+                  isRequired={true}
                   type="text"
                   placeholder="Username"
                   inputName="userName"
@@ -66,6 +68,7 @@ function Register() {
               <div className="col-12 col-md-6 mb-2">
                 <CommonInput
                   label="Email"
+                  isRequired={true}
                   type="email"
                   placeholder="Email"
                   inputName="email"
@@ -94,6 +97,7 @@ function Register() {
               <div className="col-12 col-md-6 mb-2 position-relative">
                 <PasswordInput
                   label="Password"
+                  isRequired={true}
                   isEye={true}
                   placeholder="Password"
                   inputName="password"
@@ -106,6 +110,7 @@ function Register() {
               </div>
               <div className="col-12 col-md-6 mb-2">
                 <PasswordInput
+                  isRequired={true}
                   label="Confirm Password"
                   placeholder="Confirm Password"
                   inputName="confirmPassword"

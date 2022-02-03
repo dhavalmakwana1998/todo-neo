@@ -4,6 +4,7 @@ import { Input } from "antd";
 const NumberInput = ({
   label,
   inputType,
+  isRequired,
   inputName,
   inputId,
   inputPlaceholder,
@@ -26,7 +27,10 @@ const NumberInput = ({
 
   return (
     <>
-      <label htmlFor={inputName}>{label}</label>
+      <label htmlFor={inputName}>
+        {label}
+        {isRequired && <span className="text-danger">*</span>}
+      </label>
       <Input
         type={"text"}
         name={inputName}

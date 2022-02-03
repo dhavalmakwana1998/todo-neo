@@ -40,6 +40,7 @@ function Login() {
               <CommonInput
                 ref={inputElement}
                 type="text"
+                isRequired={true}
                 placeholder="john@gmail.com / john123"
                 label="Email"
                 inputName="email"
@@ -55,6 +56,7 @@ function Login() {
             <div className="input-row mb-2">
               <PasswordInput
                 label="Password"
+                isRequired={true}
                 isEye={true}
                 placeholder="Password"
                 inputName="password"

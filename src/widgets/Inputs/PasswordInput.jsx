@@ -5,6 +5,7 @@ import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 const PasswordInput = (
   {
     label,
+    isRequired,
     inputType,
     inputName,
     inputId,
@@ -22,7 +23,10 @@ const PasswordInput = (
   };
   return (
     <>
-      <label htmlFor={inputName}>{label}</label>
+      <label htmlFor={inputName}>
+        {label}
+        {isRequired && <span className="text-danger">*</span>}
+      </label>
       <Input
         ref={ref}
         type={!eye ? "password" : "text"}
