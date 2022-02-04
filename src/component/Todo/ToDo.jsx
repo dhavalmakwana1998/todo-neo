@@ -1,27 +1,32 @@
 import { PageHeader, Button } from "antd";
-import React, { useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import useToDo from "../../Hooks/useToDo";
 import DragList from "./DragList";
+import { usePrevious } from "../../utils/helper";
+
 const AddTodoModal = React.lazy(() => import("./AddTodoModal"));
 
 function ToDo() {
-  const { loading, formik } = useToDo();
-  const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(loading);
+  const {
+    loading,
+    formik,
+    visible,
+    showModal,
+    handleCancel,
+    handleOk,
+    elements,
+    setElements,
+    generateLists,
+    isEdit,
+    isTaskRender,
+  } = useToDo();
 
-  const showModal = () => {
-    formik.resetForm();
-    setVisible(true);
-  };
-  const handleOk = () => {
-    setConfirmLoading(loading);
-    formik.handleSubmit();
-    setVisible(false);
-  };
-  const handleCancel = () => {
-    setVisible(false);
-    formik.resetForm();
-  };
+  // const prevElemets = usePrevious(elements);
+  // useEffect(() => {
+  //   if (JSON.stringify(elements) == JSON.stringify(prevElemets)) {
+  //     alert();
+  //   }
+  // }, [isTaskRender]);
 
   return (
     <div>
@@ -34,12 +39,11 @@ function ToDo() {
           </Button>,
         ]}
       ></PageHeader>
-      <DragList />
+      <DragList elements={elements} />
       <Suspense fallback={<div>Loading...</div>}>
         <AddTodoModal
           handleOk={handleOk}
           visible={visible}
-          confirmLoading={confirmLoading}
           handleCancel={handleCancel}
           formik={formik}
           loading={loading}

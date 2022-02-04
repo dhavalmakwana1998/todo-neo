@@ -2,14 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import DraggableElement from "./DraggableElement";
-import { TASK_STATUS } from "../../utils/constant";
-import { useStore } from "../../Store/Store";
 import {
-  DeleteColumnOutlined,
-  DeleteFilled,
-  DeleteOutlined,
-  DeleteTwoTone,
-} from "@ant-design/icons";
+  TASK_STATUS,
+  API_ROUTE,
+  API_URL,
+  TASK_NAME,
+} from "../../utils/constant";
+import { useStore } from "../../Store/Store";
+import { DeleteOutlined } from "@ant-design/icons";
+import useToDo from "../../Hooks/useToDo";
+import axios from "axios";
 
 const DragDropContextContainer = styled.div`
   border-radius: 6px;
@@ -27,72 +29,20 @@ const removeFromList = (list, index) => {
   return [removed, result];
 };
 
-const addToList = (list, index, element) => {
+const addToList = async (list, destinationIndex, removedElement) => {
+  console.log("add to list", list);
+  await axios.put(`${API_URL}/${API_ROUTE.tasks}/${removedElement.id}`, {
+    ...removedElement,
+    stage: TASK_NAME[destinationIndex],
+  });
   const result = Array.from(list);
-  result.splice(index, 0, element);
+  result.splice(destinationIndex, 0, removedElement);
   return result;
 };
 
-function DragList() {
+function DragList({ elements }) {
   const { isDragging, setIsDragging } = useStore();
-  const [elements, setElements] = React.useState({
-    [TASK_STATUS[0]]: [
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "Task 1",
-        stage: 0,
-        dueDate: "2022-04-02",
-        priority: 0,
-        prefix: TASK_STATUS[0],
-      },
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "Task 1",
-        stage: 0,
-        dueDate: "2022-04-02",
-        priority: 0,
-        prefix: TASK_STATUS[0],
-      },
-    ],
-    [TASK_STATUS[1]]: [
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "Task 2",
-        stage: 1,
-        dueDate: "2022-04-02",
-        priority: 1,
-        prefix: TASK_STATUS[1],
-      },
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "Task 2",
-        stage: 1,
-        dueDate: "2022-04-02",
-        priority: 1,
-        prefix: TASK_STATUS[1],
-      },
-    ],
-    [TASK_STATUS[2]]: [
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "DM 2",
-        stage: 2,
-        dueDate: "2021-01-02",
-        priority: 2,
-        prefix: TASK_STATUS[1],
-      },
-    ],
-    [TASK_STATUS[3]]: [
-      {
-        id: Math.floor(Math.random() * 1000),
-        name: "DM 3",
-        stage: 3,
-        dueDate: "2021-01-02",
-        priority: 2,
-        prefix: TASK_STATUS[1],
-      },
-    ],
-  });
+  // const { setElements, generateLists, elements: elemTodo } = useToDo();
 
   const onDragEnd = (result) => {
     console.log("result", result.destination);
@@ -102,20 +52,25 @@ function DragList() {
     const listCopy = { ...elements };
 
     const sourceList = listCopy[result.source.droppableId];
+
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
       result.source.index
     );
+
     listCopy[result.source.droppableId] = newSourceList;
     const destinationList = listCopy[result.destination.droppableId];
+
     listCopy[result.destination.droppableId] = addToList(
       destinationList,
-      result.destination.index,
+      result.destination.droppableId,
       removedElement
     );
 
     setIsDragging(false);
-    setElements(listCopy);
+
+    // setElements(listCopy);
+    // generateLists().then((res) => setElements(res));
   };
   const ondragstart = (res) => {
     setIsDragging(true);

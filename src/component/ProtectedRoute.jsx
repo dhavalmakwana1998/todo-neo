@@ -35,7 +35,6 @@ const ProtectedRoute = () => {
           )}
           {currentUser && (
             <span>
-              {" "}
               {currentUser.profile && (
                 <img className="avtar" src={`${currentUser.profile}`} />
               )}

@@ -8,12 +8,11 @@ function AddTodoModal({
   visible,
   handleCancel,
   handleOk,
-  confirmLoading,
   formik,
   loading,
+  isEdit,
 }) {
   const inputElement = createRef();
-
   useEffect(() => {
     inputElement?.current?.focus();
   }, []);
@@ -24,12 +23,11 @@ function AddTodoModal({
 
   return (
     <Modal
-      title="Add ToDo"
+      title={isEdit ? "Update ToDo" : "Add ToDo"}
       visible={visible}
       onOk={handleOk}
-      confirmLoading={confirmLoading}
       onCancel={handleCancel}
-      okText="Create Todo"
+      okText={isEdit ? "Update ToDo" : "Create Todo"}
     >
       <Form
         onSubmit={formik.handleSubmit}
@@ -54,18 +52,23 @@ function AddTodoModal({
           )}
         </div>
         <div className="row my-2">
-          <div className="col-12 col-md-6">
-            <label htmlFor="stage">Stage</label>
-            <Select defaultValue="0" style={{ width: "100%" }} disabled>
-              <Option value="0">Backlog</Option>
-            </Select>
-          </div>
+          {/* {isEdit && (
+            <div className="col-12 col-md-6">
+              <label htmlFor="stage">Stage</label>
+              <Select defaultValue="0" style={{ width: "100%" }}>
+                <Option value="0">Backlog</Option>
+              </Select>
+            </div>
+          )} */}
           <div className="col-12 col-md-6">
             <label htmlFor="priority">Priority</label>
             <Select
               style={{ width: "100%" }}
               onChange={(e) => formik.setFieldValue("priority", e)}
               allowClear
+              defaultValue={
+                formik.getFieldProps("priority").value || "Select priority"
+              }
             >
               <Option value="0">High</Option>
               <Option value="1">Medium</Option>
@@ -78,9 +81,14 @@ function AddTodoModal({
             )}
           </div>
         </div>
+
         <div className="my-2">
           <label htmlFor="dueDate">Due Date</label>
-          <DatePicker style={{ width: "100%" }} onChange={onChange} />
+          <DatePicker
+            defaultValue={formik.getFieldProps("dueDate").value || ""}
+            style={{ width: "100%" }}
+            onChange={onChange}
+          />
           {formik.touched.dueDate && formik.errors.dueDate && (
             <div className="mt-1 text-sm text-danger">
               {formik.errors.dueDate}

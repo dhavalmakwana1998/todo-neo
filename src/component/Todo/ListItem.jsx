@@ -1,7 +1,15 @@
 import { Draggable } from "react-beautiful-dnd";
-import React from "react";
+import React, { Suspense } from "react";
 import styled from "styled-components";
-import { TASK_PRIORITY, dateInPast } from "../../utils/constant";
+import {
+  TASK_PRIORITY,
+  TASK_NAME,
+  PRIORITY,
+  API_URL,
+  API_ROUTE,
+  SUCCESS_MSG,
+} from "../../utils/constant";
+
 import {
   DeleteOutlined,
   EditOutlined,
@@ -10,6 +18,11 @@ import {
 } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import { Popconfirm, message } from "antd";
+import useToDo from "../../Hooks/useToDo";
+import axios from "axios";
+import { dateInPast } from "../../utils/helper";
+
+const AddTodoModal = React.lazy(() => import("./AddTodoModal"));
 
 const CardHeader = styled.div`
   font-weight: 500;
@@ -38,15 +51,25 @@ const DragItem = styled.div`
 `;
 
 const ListItem = ({ item, index }) => {
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
+  const {
+    formik,
+    visible,
+    setVisible,
+    showEditModal,
+    handleCancel,
+    handleOk,
+    loading,
+    cancelDelete,
+    confirmDelete,
+    isEdit,
+    stageBack,
+    stageForward,
+  } = useToDo();
 
-  function cancel(e) {
-    console.log(e);
-    message.error("Click on No");
-  }
+  const editTask = () => {
+    showEditModal(item);
+  };
+
   return (
     <>
       <Draggable draggableId={item.id.toString()} index={index}>
@@ -66,29 +89,31 @@ const ListItem = ({ item, index }) => {
                   aria-label="Basic example"
                 >
                   <button
-                    disabled={item.stage === 0}
+                    disabled={item.stage === TASK_NAME.Backlog}
                     type="button"
-                    class="pb-2 p-1 m-0 btn btn-info  "
+                    class="pb-2 p-1 m-0 btn btn-info"
+                    onClick={() => stageBack(item.id, item)}
                   >
                     <LeftOutlined />
                   </button>
                   <button
-                    disabled={item.stage === 3}
+                    disabled={item.stage === TASK_NAME.Done}
                     type="button"
-                    class="pb-2 p-1 m-0 btn btn-info  "
+                    class="pb-2 p-1 m-0 btn btn-info"
+                    onClick={() => stageForward(item.id, item)}
                   >
                     <RightOutlined />
                   </button>
                 </div>
               </div>
               <CardHeader className="d-flex justify-content-between">
-                <span>{item.name}</span>
+                <span>{item.task}</span>
                 <Tooltip title="Priority">
                   <span
                     className={`${
-                      item.priority === 0
+                      item.priority == PRIORITY.High
                         ? "text-danger"
-                        : item.priority === 1
+                        : item.priority == PRIORITY.Medium
                         ? "text-warning"
                         : "text-muted"
                     }`}
@@ -118,15 +143,15 @@ const ListItem = ({ item, index }) => {
                   >
                     <button type="button" class="pb-2 p-1 m-0 btn text-warning">
                       <Tooltip title="Edit Task">
-                        <EditOutlined />
+                        <EditOutlined onClick={editTask} />
                       </Tooltip>
                     </button>
                     <button type="button" class="pb-2 p-1 m-0 btn text-danger">
                       <Tooltip title="Delete Task">
                         <Popconfirm
                           title="Are you sure to delete this task?"
-                          onConfirm={confirm}
-                          onCancel={cancel}
+                          onConfirm={() => confirmDelete(item.id)}
+                          onCancel={cancelDelete}
                           okText="Yes"
                           cancelText="No"
                         >
@@ -141,6 +166,15 @@ const ListItem = ({ item, index }) => {
           );
         }}
       </Draggable>
+      <Suspense fallback={<div>Loading...</div>}>
+        <AddTodoModal
+          handleOk={handleOk}
+          visible={visible}
+          handleCancel={handleCancel}
+          formik={formik}
+          loading={loading}
+        />
+      </Suspense>
     </>
   );
 };

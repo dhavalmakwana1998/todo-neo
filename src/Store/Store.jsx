@@ -9,6 +9,7 @@ export const StoreProvider = ({ children }) => {
   const [token, setToken] = useState(false);
   const [currentUser, setCurrentUser] = useState();
   const [isDragging, setIsDragging] = useState(false);
+
   return (
     <Store.Provider
       value={{

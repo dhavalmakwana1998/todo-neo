@@ -13,14 +13,14 @@ const useLogin = () => {
     initialValues: {
       email: "",
       password: "",
+      captcha: "",
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .required(ERROR_MESSAGE.emailRequired)
-        .email(ERROR_MESSAGE.email),
+      email: Yup.string().required(ERROR_MESSAGE.emailRequired),
       password: Yup.string()
         .required(ERROR_MESSAGE.passRequired)
         .min(6, ERROR_MESSAGE.passwordMinSix),
+      captcha: Yup.string().required(ERROR_MESSAGE.captchaRequired),
     }),
     onSubmit: (values) => {
       submitData(values);
@@ -33,7 +33,7 @@ const useLogin = () => {
     if (
       res.data.find(
         (elem) =>
-          (elem.userName === data.userName || elem.email === data.email) &&
+          (elem.userName === data.email || elem.email === data.email) &&
           elem.password === data.password
       )
     ) {

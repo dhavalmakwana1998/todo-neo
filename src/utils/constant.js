@@ -8,6 +8,7 @@ const ERROR_MESSAGE = {
   deadlineRequired: "Due Date is required",
   priorityRequired: "Priority is required",
   passRequired: "Password is required",
+  captchaRequired: "CAPTCHA is required",
   confirmPassRequired: "Confirm Password is required",
   contactReq: "Contact is required",
   userName: "User Name is required",
@@ -29,6 +30,8 @@ const ERROR_MESSAGE = {
 };
 const SUCCESS_MSG = {
   taskCreate: "Task created successfully",
+  taskUpdate: "Task updated successfully",
+  taskDelete: "Task deleted successfully",
   userCreate: "User created successfully",
 };
 const REGEX = {
@@ -38,17 +41,22 @@ const REGEX = {
 };
 const TASK_STATUS = ["Backlog", "ToDo", "Ongoing", "Done"];
 const TASK_PRIORITY = ["High", "Medium", "Low"];
+const TASK_NAME = {
+  Backlog: 0,
+  ToDo: 1,
+  Ongoing: 2,
+  Done: 3,
+};
+const PRIORITY = {
+  High: 0,
+  Medium: 1,
+  Low: 2,
+};
 
 const API_URL = "http://localhost:3300";
 const API_ROUTE = {
   user: "users",
   tasks: "tasks",
-};
-const dateInPast = function (date, toDay = new Date()) {
-  if (new Date(date) <= toDay) {
-    return true;
-  }
-  return false;
 };
 
 module.exports = {
@@ -56,8 +64,9 @@ module.exports = {
   ERROR_MESSAGE,
   SUCCESS_MSG,
   TASK_PRIORITY,
+  PRIORITY,
   REGEX,
   API_ROUTE,
   API_URL,
-  dateInPast,
+  TASK_NAME,
 };

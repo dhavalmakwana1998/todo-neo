@@ -7,12 +7,17 @@ import PasswordInput from "../../widgets/Inputs/PasswordInput";
 import useLogin from "../../Hooks/Auth/useLogin";
 import Button from "../../widgets/buttons/Button";
 import { useStore } from "../../Store/Store";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Login() {
   const { token } = useStore();
   const { loading, formik } = useLogin();
   const history = useNavigate();
   const inputElement = createRef();
+
+  function onChange(value) {
+    formik.setFieldValue("captcha", value);
+  }
 
   useEffect(() => {
     if (token) {
@@ -66,6 +71,17 @@ function Login() {
               {formik.touched.password && formik.errors.password && (
                 <div className="mt-1 text-sm text-danger">
                   {formik.errors.password}
+                </div>
+              )}
+            </div>
+            <div className="input-row mb-2">
+              <ReCAPTCHA
+                sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                onChange={onChange}
+              />
+              {formik.touched.captcha && formik.errors.captcha && (
+                <div className="mt-1 text-sm text-danger">
+                  {formik.errors.captcha}
                 </div>
               )}
             </div>
