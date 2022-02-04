@@ -38,7 +38,6 @@ const useLogin = () => {
       )
     ) {
       setLoading(false);
-      setToken(true);
       setCurrentUser(
         res.data.find(
           (elem) =>
@@ -46,6 +45,8 @@ const useLogin = () => {
             elem.password === data.password
         )
       );
+      setToken(true);
+      localStorage.setItem("AUTH_TOKEN", true);
       message.success(ERROR_MESSAGE.loginSuccess);
     } else {
       message.error(ERROR_MESSAGE.InvalidCredential);

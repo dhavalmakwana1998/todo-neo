@@ -6,7 +6,9 @@ Store.displayName = "Store";
 export const useStore = () => React.useContext(Store);
 
 export const StoreProvider = ({ children }) => {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(
+    localStorage.getItem("AUTH_TOKEN") || false
+  );
   const [currentUser, setCurrentUser] = useState();
   const [isDragging, setIsDragging] = useState(false);
 
