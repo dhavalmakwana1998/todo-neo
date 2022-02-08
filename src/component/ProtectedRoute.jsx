@@ -49,6 +49,7 @@ const ProtectedRoute = () => {
               setToken(false);
               setCurrentUser(false);
               localStorage.removeItem("AUTH_TOKEN");
+              localStorage.removeItem("C_U");
             }}
           >
             Logout

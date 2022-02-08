@@ -41,12 +41,21 @@ const useLogin = () => {
       setCurrentUser(
         res.data.find(
           (elem) =>
-            (elem.userName === data.userName || elem.email === data.email) &&
+            (elem.userName === data.email || elem.email === data.email) &&
             elem.password === data.password
         )
       );
       setToken(true);
       localStorage.setItem("AUTH_TOKEN", true);
+      const C_U = res.data.find(
+        (elem) =>
+          (elem.userName === data.email || elem.email === data.email) &&
+          elem.password === data.password
+      );
+      localStorage.setItem(
+        "C_U",
+        JSON.stringify({ fullName: C_U.fullName, profile: C_U.profile })
+      );
       message.success(ERROR_MESSAGE.loginSuccess);
     } else {
       message.error(ERROR_MESSAGE.InvalidCredential);
